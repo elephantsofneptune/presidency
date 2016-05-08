@@ -18,6 +18,7 @@ group :development, :test do
   gem "guard-rspec"
   gem "rspec-rails"
   gem "quiet_assets"
+  gem 'shoulda-matchers'
 end
 
 group :development do
