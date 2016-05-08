@@ -15,6 +15,30 @@ RSpec.describe HomeController, type: :controller do
       expect(controller).to set_flash[:notice]
       expect(controller).to set_flash[:notice].to(/Please login first/)
     end
+
+    context "logged in" do
+      it "returns http success" do
+        session[:current_user_id] = user.id
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders the index template" do
+        session[:current_user_id] = user.id
+        get :index
+        expect(response).to render_template(:index)
+      end
+
+      it "prepares the form entry object" do
+        get :index
+        expect(assigns :vote).to_not be_nil
+      end
+
+      it "prepares candidates list for voting" do
+        get :index
+        expect(assigns :candidates).to_not be_nil
+      end
+    end
   end
 
 end

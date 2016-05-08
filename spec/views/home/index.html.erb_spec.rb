@@ -14,29 +14,23 @@ RSpec.describe "home/index.html.erb", type: :view do
     expect(rendered).to match /2016 Presidential Election/
   end
 
-  xit "displays a list of presidential candidates" do
+  it "displays form with list of presidential candidates" do
     render
-
-    # watch out for capitalization
-    expect(rendered).to match /Donald Trump/
-    expect(rendered).to match /Repooplican/
-    expect(rendered).to match /Hillary Clickton/
-    expect(rendered).to match /Demobrats/
-  end
-
-  it "displays form with list of presidential candidates, sets candidate id when checkbox is true" do
-    user = User.create(name: "Josh", email: "josh@nextacademy.com")
-
-    render
-
-    expect(rendered).to have_selector('form') do |form|
-      expect(form).to have_selector('input',
-                                :type => 'submit')
-      expect(form).to have_selector('label')
-    end
     expect(rendered).to match /Donald Tramp, Repooplican/
+    expect(rendered).to match /Hillary Clickton, Demobrats/
   end
 
-  it "displays vote count" do
+  it "has logout link" do
+    render
+    expect(rendered).to have_link("Logout", href: sessions_path)
+  end
+
+  it "displays a voting form with radio inputs" do
+    render
+    expect(rendered).to have_selector('form') do |form|
+      expect(form).to have_selector('input[type=radio]',
+                                :type => 'submit',
+                                :value => candidates.first.id)
+    end
   end
 end
