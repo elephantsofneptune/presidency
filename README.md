@@ -40,20 +40,18 @@ There are a lot of tests, and you may get overwhelmed. If you want to focus on j
 ``` rspec
 
 Vote
-  a vote must have user_id
-  a vote must have candidate_id
+  belongs to a user
+  belogns to a candidate
 
 Presidential Candidate
   cannot be created without a name
     Then { candidate.valid? == false }
   cannot be created without a party
-    Then { gift.valid? == false }
-  can be created when both parameters are present
-    Then { gift.valid? == true }
+    Then { candidate.valid? == false }
+  can be created when all parameters are present
+    Then { candidate.valid? == true }
   can have many votes
     Then { votes.count == 5}
-  scopes
-    .highest_votes_first
 
 User
   record creation
@@ -69,9 +67,10 @@ User
     Then { validate uniqueness of user_id }
 
 home/index.html.erb
-  displays president vote counts
-  displays presidents for voting
+  displays list of presidents for voting if user has not voted
+  displays voting results to date if user has voted
   sets the current user's id as the voter inside the form
+  sets candidate id in form upon selecting radio box
 
 logins/show.html.erb
   displays the login screen
