@@ -43,7 +43,7 @@ RSpec.describe SessionsController, type: :controller do
 
     it "shows error message" do
       expect(controller).to set_flash[:notice]
-      expect(flash[:notice]).to eq "Login details was incomplete."
+      expect(flash[:notice]).to eq "Login details were incomplete."
     end
   end
 

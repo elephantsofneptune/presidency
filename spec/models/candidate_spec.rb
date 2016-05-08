@@ -3,19 +3,28 @@ require 'rails_helper'
 RSpec.describe Candidate, type: :model do
   context "record creation" do
     context "cannot be created without a party" do
-      When(:candidate) { Candidate.create(name: "Donald Tramp") }
+      When(:candidate) { Candidate.create(name: "Donald Tramp",
+                                          image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/trump-square-150.jpg") }
       Then { candidate.valid? == false }
     end
 
     context "cannot be created without a name" do
-      When(:candidate) { Candidate.create(party: "Repooplican") }
+      When(:candidate) { Candidate.create(party: "Repooplican",
+                                          image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/trump-square-150.jpg") }
       Then { candidate.valid? == false }
     end
 
-    context "can be created when both parameters are present" do
+    context "cannot be created without a image url" do
+      When(:candidate) { Candidate.create(name: "Donal Tramp",
+                                          party: "Repooplican") }
+      Then { candidate.valid? == false }
+    end
+
+    context "can be created when all parameters are present" do
       When(:candidate) { Candidate.create(
         name: "Donald Tramp",
-        party: "Repooplican"
+        party: "Repooplican",
+        image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/trump-square-150.jpg"
       )}
       Then { candidate.valid? == true }
     end

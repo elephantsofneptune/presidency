@@ -3,6 +3,7 @@ class CreateCandidates < ActiveRecord::Migration
     create_table :candidates do |t|
       t.string :name
       t.string :party
+      t.string :image_url
 
       t.timestamps null: false
     end
