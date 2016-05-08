@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Candidate, type: :model do
   context "record creation" do
+
+    it "must have name, party and image_url columns" do
+      is_expected.to have_db_column(:name).of_type(:string)
+      is_expected.to have_db_column(:party).of_type(:string)
+      is_expected.to have_db_column(:image_url).of_type(:string)
+    end
+
     context "cannot be created without a party" do
       When(:candidate) { Candidate.create(name: "Donald Tramp",
                                           image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/trump-square-150.jpg") }
@@ -15,7 +22,7 @@ RSpec.describe Candidate, type: :model do
     end
 
     context "cannot be created without a image url" do
-      When(:candidate) { Candidate.create(name: "Donal Tramp",
+      When(:candidate) { Candidate.create(name: "Donald Tramp",
                                           party: "Repooplican") }
       Then { candidate.valid? == false }
     end

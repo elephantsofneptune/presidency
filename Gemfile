@@ -19,6 +19,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "quiet_assets"
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 group :development do
