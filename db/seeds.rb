@@ -1,4 +1,4 @@
 Candidate.find_or_create_by(name: "Donald Tramp", party: "Repooplican", image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/trump-square-150.jpg")
-Candidate.find_or_create_by(name: "Ted Crud", party: "Repooplican", image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/cruz-square-silo-150.png")
+Candidate.find_or_create_by(name: "Ted Crud", party: "Repoplican", image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/cruz-square-silo-150.png")
 Candidate.find_or_create_by(name: "Hillary Clickton", party: "Demobrats", image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/clinton-square-150.jpg")
-Candidate.find_or_create_by(name: "Bernie Sandbox", party: "Demobrats", image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/sanders-square-150.jpg")
+Candidate.find_or_create_by(name: "Bernie Sandbox", party: "Democats", image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/sanders-square-150.jpg")

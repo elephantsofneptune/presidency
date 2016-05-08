@@ -1,0 +1,13 @@
+<h1>2016 Presidential Election Current Results</h1>
+<h2>As of <%= Date.current %></h2>
+
+<p>Total Votes: <%= Vote.count %></p>
+
+<%- @candidates.each do |candidate| %>
+  <div class="pull-left">
+    <%= image_tag candidate.image_url %>
+    <p><%= candidate.name %>, <%= candidate.party %></p>
+    <p>Candidate Votes: <%= candidate.votes.count %></p>
+    <p>Percentage Votes: <%= candidate.percentage_votes_humanized %></p>
+  </div>
+<% end %>

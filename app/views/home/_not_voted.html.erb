@@ -1,0 +1,19 @@
+<h1>Vote for the 2016 Presidential Election</h1>
+<%= form_for @vote do |form| %>
+  <div>Select radio button to vote for the next 2016 President</div>
+  <hr />
+  <%- @candidates.each do |candidate| %>
+    <%= form.radio_button :candidate, candidate.id %>
+    <%= form.label "#{candidate.name}, #{candidate.party}" %>
+    <%= form.label :candidate, value: candidate.id do %>
+      <div>
+        <%= image_tag candidate.image_url %>
+      </div>
+    <% end %>
+    <br/ >
+  <% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
