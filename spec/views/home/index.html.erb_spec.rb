@@ -31,6 +31,11 @@ RSpec.describe "home/index.html.erb", type: :view do
       expect(rendered).to have_link("Logout", href: sessions_path)
     end
 
+    it "has link to voters listing page" do
+      render
+      expect(rendered).to have_link("Voters", href: votes_path)
+    end
+
     it "displays a voting form with radio inputs" do
       render
       expect(rendered).to have_selector('form') do |form|
@@ -38,6 +43,11 @@ RSpec.describe "home/index.html.erb", type: :view do
                                   :type => 'submit',
                                   :value => candidates.first.id)
       end
+    end
+
+    it "should have submit button with disabled with" do
+      render
+      expect(rendered).to have_button("Submit Vote")
     end
   end
 

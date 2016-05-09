@@ -1,0 +1,21 @@
+<h1>Voters List</h1>
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Voter</th>
+      <th>Candidate</th>
+      <th>Party</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @votes.each_with_index do |vote, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= vote.user.name %></td>
+        <td><%= vote.candidate.name %></td>
+        <td><%= vote.candidate.party %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

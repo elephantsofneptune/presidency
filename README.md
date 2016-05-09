@@ -3,6 +3,8 @@
 This is NEXTACADEMY Rails assessment. You are not allowed to copy or share the files from this repo without
 written permission from NEXTACADEMY.
 
+This is a mock exercise to create a voting app for a Presidential Election. This is by no means representative of the actual US electoral process :p
+
 ## Duration
 8 Hours
 
@@ -47,7 +49,8 @@ SessionsController
       creates user session
       redirect to root path if user is created
       welcomes user
-    invalid login
+    invalid login without email
+    invalid login without name
       redirects back to the logins path if user did not get created
       shows error message
   DELETE #destroy
@@ -73,6 +76,10 @@ VotesController
       shows success message
     unsuccessfully created vote
       shows error message
+  GET #index
+    returns http success
+    renders the index template
+    assigns @votes
 
 Vote
   record creation
@@ -114,12 +121,12 @@ User
     sign up with valid email
     sign up with invalid email
 
-
 home/index.html.erb
   user has not voted
     has h1 title
     displays form with list of presidential candidates
     has logout link
+    has link to voters listing page
     displays a voting form with radio inputs
   user has voted
     has h1 title to show result
@@ -128,6 +135,14 @@ home/index.html.erb
     shows candidate votes
     shows percentage of votes won
 
+votes/index.html.erb
+  displays list of votes
+    displays index number
+    displays voter name
+    displays candidate name
+    displays party
+    displays as a table
+
 logins/show.html.erb
   displays the login screen
 
@@ -135,8 +150,8 @@ VotesHelper
   calculate total votes
 ```
 
-Finished in 0.58875 seconds (files took 2.18 seconds to load)
-51 examples
+Finished in 0.72489 seconds (files took 2.22 seconds to load)
+64 examples
 
 ## Some related reading:
 
