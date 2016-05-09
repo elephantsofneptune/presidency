@@ -19,6 +19,8 @@ This is a mock exercise to create a voting app for a Presidential Election. This
 5. Push and commit as frequent as possible (at least every 2 hours).
 6. Raise a Pull Request.
 
+## Extra
+Run `rake db:seed` file after you've created the necessary models to create the necessary presidential candidates.
 
 ## Guard
 This project uses `guard` and `guard-rspec`. In your terminal, run:
