@@ -5,6 +5,8 @@ class Candidate < ActiveRecord::Base
   validates :party, presence: true
   validates :image_url, presence: true
 
+  scope :by_popularity, -> { order('votes_count DESC') }
+
   def percentage_votes
     percentage = (votes.count.to_f/ total_votes.to_f) * 100
     percentage.round(1)

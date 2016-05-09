@@ -9,6 +9,10 @@ RSpec.describe Candidate, type: :model do
       is_expected.to have_db_column(:image_url).of_type(:string)
     end
 
+    it "has a counter for votes" do
+      is_expected.to have_db_column(:votes_count).of_type(:integer)
+    end
+
     context "cannot be created without a party" do
       When(:candidate) { Candidate.create(name: "Donald Tramp",
                                           image_url: "https://placehold.it/300.png/09f/fff") }

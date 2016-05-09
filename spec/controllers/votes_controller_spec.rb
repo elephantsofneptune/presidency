@@ -37,8 +37,14 @@ RSpec.describe VotesController, type: :controller do
           candidate: candidate, user: current_user
         }
       end
+
       it "valid creation will increase vote count" do
         expect(Vote.count).to eq 1
+      end
+
+      it "valid creation will increase counter cache" do
+        candidate.reload
+        expect(candidate.votes_count).to eq 1
       end
 
       it "redirect to root path" do

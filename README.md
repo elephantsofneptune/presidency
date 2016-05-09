@@ -76,6 +76,7 @@ VotesController
   POST #create
     successfully created vote
       valid creation will increase vote count
+      valid creation will increase counter cache
       redirect to root path
       shows success message
     unsuccessfully created vote
@@ -98,6 +99,7 @@ Vote
 Presidential Candidate
   record creation
     must have name, party and image_url columns
+    has a counter for votes
     cannot be created without a name
       Then { candidate.valid? == false }
     cannot be created without a party
@@ -155,7 +157,7 @@ VotesHelper
 ```
 
 Finished in 0.72489 seconds (files took 2.22 seconds to load)
-64 examples
+66 examples
 
 ## Some related reading:
 
