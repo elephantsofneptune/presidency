@@ -5,6 +5,8 @@ written permission from NEXTACADEMY.
 
 This is a mock exercise to create a voting app for a Presidential Election. This is by no means representative of the actual US electoral process :p
 
+An example of a working app can be found here: *https://presidency.herokuapp.com/
+
 ## Duration
 8 Hours
 
