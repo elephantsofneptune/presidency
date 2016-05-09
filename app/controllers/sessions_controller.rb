@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       session[:current_user_id] = @user.id
       redirect_to root_path, flash: { notice: "Welcome to the Presidential Voting System, #{@user.name}!" }
     else
-      redirect_to sessions_path, flash: { notice: "Login details were incomplete." }
+      errors = @user.errors.full_messages
+      redirect_to sessions_path, flash: { notice: errors.join(", ") }
     end
   end
 

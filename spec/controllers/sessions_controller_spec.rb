@@ -34,7 +34,7 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
 
-    context "invalid login" do
+    context "invalid login without email" do
       before do
         post :create, :user => { name: "test_name" }
       end
@@ -42,9 +42,23 @@ RSpec.describe SessionsController, type: :controller do
         expect(response).to redirect_to(sessions_path)
       end
 
-      it "shows error message" do
+      it "shows email error message" do
         expect(controller).to set_flash[:notice]
-        expect(flash[:notice]).to eq "Login details were incomplete."
+        expect(flash[:notice]).to eq "Email can't be blank, Email is invalid"
+      end
+    end
+
+    context "invalid login without name" do
+      before do
+        post :create, :user => { email: "weijia@kfit.com" }
+      end
+      it "redirects back to the logins path if user did not get created" do
+        expect(response).to redirect_to(sessions_path)
+      end
+
+      it "shows name error message" do
+        expect(controller).to set_flash[:notice]
+        expect(flash[:notice]).to eq "Name can't be blank"
       end
     end
   end
