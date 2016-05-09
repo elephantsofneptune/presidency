@@ -6,14 +6,15 @@ class Candidate < ActiveRecord::Base
   validates :image_url, presence: true
 
   def percentage_votes
-    (votes.count.to_f/ total_votes.to_f) * 100
-  end
-
-  def percentage_votes_humanized
-    "#{percentage_votes}%"
+    percentage = (votes.count.to_f/ total_votes.to_f) * 100
+    percentage.round(1)
   end
 
   def total_votes
     Vote.count
+  end
+
+  def percentage_votes_humanized
+    "#{percentage_votes}%"
   end
 end

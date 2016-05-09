@@ -11,5 +11,9 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe VotesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "total votes" do
+    it "calculates total votes" do
+      expect(helper.total_votes).to eq(Vote.count)
+    end
+  end
 end

@@ -83,15 +83,24 @@ Vote
   can be created when both user and candidate are present
   user can only vote once
 
+VotesHelper
+  calculate total votes
+
 Presidential Candidate
-  cannot be created without a name
-    Then { candidate.valid? == false }
-  cannot be created without a party
-    Then { candidate.valid? == false }
-  can be created when all parameters are present
-    Then { candidate.valid? == true }
-  can have many votes
-    Then { votes.count == 5}
+  record creation
+    must have name, party and image_url columns
+    cannot be created without a name
+      Then { candidate.valid? == false }
+    cannot be created without a party
+      Then { candidate.valid? == false }
+    cannot be created without a image url
+      Then { candidate.valid? == false }
+    can be created when all parameters are present
+      Then { candidate.valid? == true }
+  returns calculated votes
+    calculate candidate percentage votes
+    calculate total votes
+    ensures votes percentage is rounded to one decimal
 
 User
   record creation
@@ -107,15 +116,24 @@ User
     Then { validate uniqueness of user_id }
 
 home/index.html.erb
-  displays list of presidents for voting if user has not voted
-  displays voting results to date if user has voted
-  sets the current user's id as the voter inside the form
-  sets candidate id in form upon selecting radio box
+  user has not voted
+    has h1 title
+    displays form with list of presidential candidates
+    has logout link
+    displays a voting form with radio inputs
+  user has voted
+    has h1 title to show result
+    shows list of presidential candidates
+    shows total votes
+    shows candidate votes
+    shows percentage of votes won
 
 logins/show.html.erb
   displays the login screen
 ```
 
+Finished in 0.58875 seconds (files took 2.18 seconds to load)
+48 examples
 
 ## Some related reading:
 
