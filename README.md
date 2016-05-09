@@ -39,6 +39,23 @@ There are a lot of tests, and you may get overwhelmed. If you want to focus on j
 
 ``` rspec
 
+SessionsController
+  GET #show
+    returns http success
+  POST #create
+    valid login
+      creates user session
+      redirect to root path if user is created
+      welcomes user
+    invalid login
+      redirects back to the logins path if user did not get created
+      shows error message
+  DELETE #destroy
+    sets session to nil when user logs out
+    redirects back to to sessions path if user logs out
+    shows logged out message
+
+
 Vote
   belongs to a user
   belogns to a candidate
@@ -74,9 +91,6 @@ home/index.html.erb
 
 logins/show.html.erb
   displays the login screen
-
-Finished in 0.66011 seconds (files took 1.74 seconds to load)
-50 examples, 0 failures
 ```
 
 

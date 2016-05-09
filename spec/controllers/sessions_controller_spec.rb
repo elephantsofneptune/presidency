@@ -13,49 +13,57 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  context "valid login" do
-    before do
-      post :create, :user => { id: 1, name: "test_name", email: "test_email@nextacademy.com" }
+  describe "POST #create" do
+    context "valid login" do
+      before do
+        post :create, :user => { id: 1, name: "test_name", email: "test_email@nextacademy.com" }
+      end
+
+      it "creates user session" do
+        expect(controller).to set_session[:current_user_id]
+        expect(session[:current_user_id]).to eq assigns[:user].id
+      end
+
+      it "redirects to the root path if user is created" do
+        expect(response).to redirect_to(root_path)
+      end
+
+      it "welcomes user" do
+        expect(controller).to set_flash[:notice]
+        expect(flash[:notice]).to eq "Welcome to the Presidential Voting System, test_name!"
+      end
     end
 
-    it "creates user session" do
-      expect(controller).to set_session[:current_user_id]
-      expect(session[:current_user_id]).to eq assigns[:user].id
-    end
+    context "invalid login" do
+      before do
+        post :create, :user => { name: "test_name" }
+      end
+      it "redirects back to the logins path if user did not get created" do
+        expect(response).to redirect_to(sessions_path)
+      end
 
-    it "redirects to the root path if a user got created" do
-      expect(response).to redirect_to(root_path)
-    end
-
-    it "welcomes user" do
-      expect(controller).to set_flash[:notice]
-      expect(flash[:notice]).to eq "Welcome to the Presidential Voting System, test_name!"
+      it "shows error message" do
+        expect(controller).to set_flash[:notice]
+        expect(flash[:notice]).to eq "Login details were incomplete."
+      end
     end
   end
 
-  context "unsuccessful login" do
+  describe 'DELETE #destroy' do
     before do
-      post :create, :user => { name: "test_name" }
-    end
-    it "redirects back to the logins path if a user did not get created" do
-      expect(response).to redirect_to(sessions_path)
+      post :create, :user => { name: "test_name", email: "test_email@nextacademy.com" }
+      delete :destroy
     end
 
-    it "shows error message" do
-      expect(controller).to set_flash[:notice]
-      expect(flash[:notice]).to eq "Login details were incomplete."
-    end
-  end
-
-  context 'DELETE #destroy' do
-    setup { delete :destroy }
-
-    it "sets session to nil when logs out" do
-      expect(controller).to_not set_session
+    it "sets session to nil when user logs out" do
       expect(session[:current_user_id]).to eq nil
     end
 
-    xit "shows logged out message" do
+    it "redirects back to to sessions path if user logs out" do
+        expect(response).to redirect_to(sessions_path)
+      end
+
+    it "shows logged out message" do
       expect(flash[:notice]).to eq "You have successfully logged out."
     end
   end
