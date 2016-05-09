@@ -81,10 +81,8 @@ Vote
   cannot be created without a candidate
   cannot be created without a user
   can be created when both user and candidate are present
-  user can only vote once
-
-VotesHelper
-  calculate total votes
+  validations for vote
+    user can only vote once
 
 Presidential Candidate
   record creation
@@ -111,8 +109,10 @@ User
       Then { user.valid? == false }
     can be created when both parameters are present
       Then { user.valid? == true }
-  a user can vote for a president
-    Then { president.votes.count += 1 }
+  validations for user
+    cannot sign up with duplicated emails
+    sign up with valid email
+    sign up with invalid email
 
 
 home/index.html.erb
@@ -130,6 +130,9 @@ home/index.html.erb
 
 logins/show.html.erb
   displays the login screen
+
+VotesHelper
+  calculate total votes
 ```
 
 Finished in 0.58875 seconds (files took 2.18 seconds to load)
