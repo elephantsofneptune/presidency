@@ -55,10 +55,33 @@ SessionsController
     redirects back to to sessions path if user logs out
     shows logged out message
 
+HomeController
+  GET #index
+    redirects to the login page if user is not yet registered or logged in
+    prompts user to login first
+    logged in
+      returns http success
+      renders the index template
+      prepares the form vote object
+      assigns @candidates
+
+VotesController
+  POST #create
+    successfully created vote
+      valid creation will increase vote count
+      redirect to root path
+      shows success message
+    unsuccessfully created vote
+      shows error message
 
 Vote
-  belongs to a user
-  belogns to a candidate
+  record creation
+    belongs to a user
+    belongs to a candidate
+  cannot be created without a candidate
+  cannot be created without a user
+  can be created when both user and candidate are present
+  user can only vote once
 
 Presidential Candidate
   cannot be created without a name

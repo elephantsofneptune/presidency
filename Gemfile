@@ -20,6 +20,7 @@ group :development, :test do
   gem "quiet_assets"
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :development do

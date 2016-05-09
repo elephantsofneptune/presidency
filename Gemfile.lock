@@ -157,6 +157,10 @@ GEM
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
+    rspec-activemodel-mocks (1.0.3)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -231,6 +235,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.6)
   rspec (~> 3.0)
+  rspec-activemodel-mocks
   rspec-given
   rspec-rails
   sass-rails (~> 5.0)
