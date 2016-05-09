@@ -104,6 +104,7 @@ Presidential Candidate
 
 User
   record creation
+    should have name and email
     cannot be created without a name
       Then { user.valid? == false }
     cannot be created without an email
@@ -112,8 +113,7 @@ User
       Then { user.valid? == true }
   a user can vote for a president
     Then { president.votes.count += 1 }
-  a user can only vote once
-    Then { validate uniqueness of user_id }
+
 
 home/index.html.erb
   user has not voted
@@ -133,7 +133,7 @@ logins/show.html.erb
 ```
 
 Finished in 0.58875 seconds (files took 2.18 seconds to load)
-48 examples
+51 examples
 
 ## Some related reading:
 

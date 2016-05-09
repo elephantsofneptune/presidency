@@ -29,7 +29,15 @@ RSpec.describe Vote, type: :model do
 
     When(:vote) { Vote.create(candidate: candidate, user: user) }
     Then { vote.valid? == true }
+  end
 
+  context "validations for vote" do
+    let(:user) { User.create(name: "test_name", email: "josh@nextacademy.com") }
+    let(:candidate) { Candidate.create!(name: "Donald Tramp",
+                                        party: "Repooplican",
+                                        image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/trump-square-150.jpg") }
+
+    When(:vote) { Vote.create(candidate: candidate, user: user) }
     it "user can only vote once" do
       should validate_uniqueness_of(:user_id)
     end

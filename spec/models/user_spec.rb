@@ -25,4 +25,21 @@ RSpec.describe User, type: :model do
       Then { user.valid? == true }
     end
   end
+
+  context "validations for user" do
+    let(:user1) { User.create(name: "Josh Geng", email: "josh@nextacademy.com")}
+    let(:user2) { User.create(name: "Delilah",email: "delilah.com") }
+
+    it "cannot sign up with duplicated emails" do
+      should validate_uniqueness_of(:email)
+    end
+
+    it "sign up with valid email" do
+      expect(user1).to be_valid
+    end
+
+    it "sign up with invalid email" do
+      expect(user2).to be_invalid
+    end
+  end
 end
