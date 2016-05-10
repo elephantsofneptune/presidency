@@ -4,6 +4,7 @@ RSpec.describe VotesController, type: :controller do
   let(:test_email) { 'test@example.com'}
   let(:user) { User.create(name: "test_name", email: test_email) }
   let(:candidate) { Candidate.create(name: "Donald Tramp", party: "Repooplican", image_url: "https://placehold.it/300.png/09f/fff") }
+  let(:vote) { Vote.create(user: user, candidate: candidate) }
 
   describe "GET #index" do
     context "logged in" do
@@ -11,6 +12,26 @@ RSpec.describe VotesController, type: :controller do
         session[:current_user_id] = user.id
         get :index
         expect(response).to have_http_status(:success)
+      end
+
+      it "returns all results if search query is blank" do
+        session[:current_user_id] = user.id
+        get :index, search: ""
+        expect(assigns(:votes)).to eq [vote]
+      end
+
+      it "returns search query results if exist" do
+        session[:current_user_id] = user.id
+        get :index, search: "test"
+        vote.reload
+        expect(assigns(:votes)).to eq [vote]
+      end
+
+      it "returns no search query results if do not exist" do
+        session[:current_user_id] = user.id
+        get :index, search: "bollock"
+        vote.reload
+        expect(assigns(:votes)).to eq []
       end
 
       it "renders the index template" do

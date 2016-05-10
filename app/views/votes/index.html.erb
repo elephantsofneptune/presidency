@@ -1,4 +1,11 @@
+<%= link_to "Logout", sessions_path, method: :delete %>
+<%= link_to "Voters", votes_path %>
+<%= link_to "Home", root_path %>
+
 <h1>Voters List</h1>
+
+<%= render partial: "search" %>
+
 <table>
   <thead>
     <tr>

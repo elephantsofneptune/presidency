@@ -1,0 +1,6 @@
+<%= form_tag votes_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], class: "inline" %>
+    <%= submit_tag "Search", class: "inline" %>
+  </p>
+<% end %>

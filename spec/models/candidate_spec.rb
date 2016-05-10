@@ -77,4 +77,20 @@ RSpec.describe Candidate, type: :model do
       expect(candidate3.percentage_votes).to eq(33.3)
     end
   end
+
+  describe "#sort by popularity" do
+    let(:user) { User.create(name: "SSY", email: "ssy@nextacademy.com") }
+    let(:candidate1) { Candidate.create!(name: "Donald Tramp",
+                                        party: "Repooplican",
+                                        image_url: "https://placehold.it/300.png/09f/fff") }
+    let(:candidate2) { Candidate.create!(name: "Najib",
+                                        party: "Lazat",
+                                        image_url: "https://placehold.it/300.png/09f/fff") }
+    let(:vote) { Vote.create!(user_id: user.id, candidate_id: candidate2.id) }
+
+    it "most popular is ordered first" do
+      vote.reload
+      expect(Candidate.by_popularity).to eq [candidate2, candidate1]
+    end
+  end
 end

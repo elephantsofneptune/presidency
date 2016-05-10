@@ -36,6 +36,11 @@ RSpec.describe "home/index.html.erb", type: :view do
       expect(rendered).to have_link("Voters", href: votes_path)
     end
 
+    it "has link to voters listing page" do
+      render
+      expect(rendered).to have_link("Home", href: root_path)
+    end
+
     it "displays a voting form with radio inputs" do
       render
       expect(rendered).to have_selector('form') do |form|
@@ -48,6 +53,7 @@ RSpec.describe "home/index.html.erb", type: :view do
 
   context 'user has voted' do
     let(:candidates) { [Candidate.create!(name: "Donald Tramp", party: "Repooplican", image_url: "https://placehold.it/300.png/09f/fff")] }
+
     before do
       assign(:vote, Vote.create!(user_id: user.id, candidate_id: candidates.first.id))
     end
@@ -65,17 +71,17 @@ RSpec.describe "home/index.html.erb", type: :view do
 
     it "shows total votes" do
       render
-      expect(rendered).to match /Total Votes:/
+      expect(rendered).to match /Total Votes: 1/
     end
 
     it "shows candidate votes" do
       render
-      expect(rendered).to match /Candidate Votes:/
+      expect(rendered).to match /Candidate Votes: /
     end
 
     it "shows percentage of votes won" do
       render
-      expect(rendered).to match /Percentage Votes:/
+      expect(rendered).to match /Percentage Votes: /
     end
   end
 end

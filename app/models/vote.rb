@@ -4,4 +4,9 @@ class Vote < ActiveRecord::Base
 
   validates :user_id, presence: true, uniqueness: true
   validates :candidate_id, presence: true
+
+  scope :search, -> (query) {
+    return if query.blank?;
+    joins(:candidate, :user).
+    where("candidates.name ILIKE :query or candidates.party ILIKE :query or users.name ILIKE :query", query: "%#{query}%") }
 end

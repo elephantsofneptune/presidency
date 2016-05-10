@@ -1,6 +1,6 @@
 class VotesController < ApplicationController
   def index
-    @votes = Vote.all
+    @votes = Vote.search(params[:search])
   end
 
   def create

@@ -1,5 +1,6 @@
 <%= link_to "Logout", sessions_path, method: :delete %>
 <%= link_to "Voters", votes_path %>
+<%= link_to "Home", root_path %>
 
 <%- if @current_user.voted? %>
   <%= render partial: "voted" %>

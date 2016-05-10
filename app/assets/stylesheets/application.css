@@ -17,3 +17,7 @@
 html {
   padding: 10px 20px;
 }
+
+.inline {
+  display: inline !important;
+}
