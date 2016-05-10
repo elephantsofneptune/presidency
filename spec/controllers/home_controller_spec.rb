@@ -35,7 +35,7 @@ RSpec.describe HomeController, type: :controller do
       end
 
       it "assigns @candidates" do
-        candidate = Candidate.create!(name: "Donald Tramp", party: "Repooplican", image_url: "http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/trump-square-150.jpg")
+        candidate = Candidate.create!(name: "Donald Tramp", party: "Repooplican", image_url: "https://placehold.it/300.png/09f/fff")
         get :index
         expect(assigns :candidates).to_not be_nil
         expect(assigns :candidates).to eq([candidate])
