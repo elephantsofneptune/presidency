@@ -73,6 +73,13 @@ HomeController
       assigns @candidates
 
 VotesController
+  GET #index
+    returns http success
+    renders the index template
+    returns all results if search query is blank
+    returns search query results if exist
+    returns no search query results if do not exist
+    assigns @votes
   POST #create
     successfully created vote
       valid creation will increase vote count
@@ -81,10 +88,6 @@ VotesController
       shows success message
     unsuccessfully created vote
       shows error message
-  GET #index
-    returns http success
-    renders the index template
-    assigns @votes
 
 Vote
   record creation
@@ -95,6 +98,10 @@ Vote
   can be created when both user and candidate are present
   validations for vote
     user can only vote once
+  #search
+    returns results when user name is searched
+    returns results when candidate name is searched
+    returns results when candidate party is searched
 
 Presidential Candidate
   record creation
@@ -112,6 +119,8 @@ Presidential Candidate
     calculate candidate percentage votes
     calculate total votes
     ensures votes percentage is rounded to one decimal
+  sort by popularity
+    most popular is ordered first
 
 User
   record creation
@@ -156,8 +165,8 @@ VotesHelper
   calculate total votes
 ```
 
-Finished in 0.72489 seconds (files took 2.22 seconds to load)
-66 examples
+Finished in 1.16 seconds (files took 3.79 seconds to load)
+73 examples, 0 failures
 
 ## Some related reading:
 
