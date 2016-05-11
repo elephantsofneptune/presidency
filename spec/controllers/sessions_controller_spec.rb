@@ -9,7 +9,10 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it "redirects to root if already logged in" do
-
+      user = User.create!(name: "test_name", email: "test_email@nextacademy.com")
+      session[:current_user_id] = user.id
+      get :show
+      expect(response).to redirect_to root_path
     end
   end
 
